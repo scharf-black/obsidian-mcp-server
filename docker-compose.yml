@@ -1,0 +1,15 @@
+services:
+  obsidian-mcp:
+    build: .
+    image: obsidian-mcp:latest
+    container_name: obsidian-mcp
+    restart: unless-stopped
+    ports:
+      - "3010:3000"
+    environment:
+      PORT: "3000"
+      OBSIDIAN_API_KEY: ${OBSIDIAN_API_KEY}
+      OBSIDIAN_BASE_URL: ${OBSIDIAN_BASE_URL}
+      OBSIDIAN_VERIFY_SSL: ${OBSIDIAN_VERIFY_SSL:-true}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
